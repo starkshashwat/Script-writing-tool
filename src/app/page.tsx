@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import ThreeOrb from "../components/ThreeOrb";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
+
+const ThreeOrb = dynamic(() => import("../components/ThreeOrb"), { ssr: false });
 
 function MaterialIcon({ name, fill, className = "" }: { name: string; fill?: boolean; className?: string }) {
   return (
