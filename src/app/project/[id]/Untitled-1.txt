@@ -1,0 +1,1045 @@
+<!DOCTYPE html><html class="light scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TubeBoost - AI-Powered Video Strategy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "primary-fixed-dim": "#ffb4a8",
+                "on-background": "#2b1613",
+                "surface-container-high": "#ffe2dd",
+                "background": "#fff8f6",
+                "on-secondary-container": "#fffbff",
+                "surface-bright": "#fff8f6",
+                "secondary-fixed-dim": "#ffb59e",
+                "error-container": "#ffdad6",
+                "surface-container-highest": "#ffdad4",
+                "surface-variant": "#ffdad4",
+                "surface-dim": "#f8d1cb",
+                "secondary": "#aa3000",
+                "on-tertiary": "#ffffff",
+                "surface-container": "#ffe9e6",
+                "tertiary-fixed": "#d7e2ff",
+                "primary-fixed": "#ffdad4",
+                "on-tertiary-container": "#fefcff",
+                "surface-container-low": "#fff0ee",
+                "on-primary-container": "#fffbff",
+                "secondary-fixed": "#ffdbd0",
+                "tertiary": "#0059ba",
+                "outline-variant": "#ebbbb4",
+                "on-surface": "#2b1613",
+                "on-primary-fixed": "#410000",
+                "secondary-container": "#d43f00",
+                "primary-container": "#eb0000",
+                "on-error-container": "#93000a",
+                "on-secondary": "#ffffff",
+                "inverse-on-surface": "#ffedea",
+                "surface-tint": "#c00100",
+                "on-tertiary-fixed": "#001a40",
+                "on-error": "#ffffff",
+                "inverse-primary": "#ffb4a8",
+                "tertiary-fixed-dim": "#acc7ff",
+                "primary": "#bc0100",
+                "tertiary-container": "#0071e8",
+                "surface": "#fff8f6",
+                "outline": "#956d67",
+                "on-primary-fixed-variant": "#930100",
+                "error": "#ba1a1a",
+                "inverse-surface": "#422a27",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary-fixed-variant": "#004491",
+                "on-secondary-fixed": "#3a0b00",
+                "on-surface-variant": "#603e39",
+                "on-secondary-fixed-variant": "#852400",
+                "on-primary": "#ffffff"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "margin-desktop": "64px",
+                "stack-md": "24px",
+                "stack-sm": "12px",
+                "gutter": "24px",
+                "container-max": "1280px",
+                "stack-xl": "48px",
+                "margin-mobile": "20px",
+                "base": "8px"
+        },
+        "fontFamily": {
+                "display-lg": [
+                        "Manrope"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "headline-lg-mobile": [
+                        "Manrope"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "JetBrains Mono", "monospace"
+                ],
+                "display-2xl": [
+                        "Manrope"
+                ],
+                "label-md": [
+                        "JetBrains Mono", "monospace"
+                ],
+                "headline-lg": [
+                        "Manrope"
+                ],
+                "mono": [
+                        "JetBrains Mono", "monospace"
+                ]
+        },
+        "fontSize": {
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.03em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display-2xl": [
+                        "72px",
+                        {
+                                "lineHeight": "80px",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f0f0f; color: #e5e5e5; }
+        h1, h2, h3, h4, .font-display { font-family: 'Manrope', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .blueprint-bg {
+            position: fixed;
+            inset: 0;
+            background-color: #0a0a0a;
+            background-image: 
+                linear-gradient(to right, rgba(188, 1, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(188, 1, 0, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -10;
+        }
+
+        .blueprint-grid-fine {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 10px 10px;
+            z-index: -10;
+        }
+
+        .tech-panel {
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(188, 1, 0, 0.3);
+            box-shadow: inset 0 0 20px rgba(188, 1, 0, 0.05);
+            position: relative;
+        }
+
+        .tech-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 10px; height: 10px;
+            border-top: 2px solid #bc0100;
+            border-left: 2px solid #bc0100;
+        }
+        .tech-panel::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 10px; height: 10px;
+            border-bottom: 2px solid #bc0100;
+            border-right: 2px solid #bc0100;
+        }
+
+        .tech-frame {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(188, 1, 0, 0.4);
+        }
+        
+        .scanner-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(188, 1, 0, 0.8);
+            box-shadow: 0 0 10px #bc0100, 0 0 20px #bc0100;
+            opacity: 0.5;
+            animation: scan 4s linear infinite;
+            z-index: 10;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(-10px); }
+            100% { transform: translateY(1000%); }
+        }
+
+        .data-flow-path {
+            stroke-dasharray: 10;
+            animation: flowDash 20s linear infinite;
+        }
+        
+        @keyframes flowDash {
+            to { stroke-dashoffset: -1000; }
+        }
+
+        .pulse-ring {
+            animation: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulseRing {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        .vs-glow {
+            text-shadow: 0 0 20px rgba(188, 1, 0, 0.5);
+            box-shadow: 0 0 30px rgba(188, 1, 0, 0.2);
+        }
+
+        /* Parallax Assembly Animations */
+        .assemble-block {
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        
+        .assemble-block.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .assemble-line-x {
+            width: 0;
+            transition: width 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .assemble-line-x.visible {
+            width: 100%;
+        }
+        
+        .assemble-line-y {
+            height: 0;
+            transition: height 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .assemble-line-y.visible {
+            height: 100%;
+        }
+
+        .accordion-content {
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.3s ease;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 300px;
+            opacity: 1;
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        /* Sidebar Nav */
+        .side-nav {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border: 1px solid rgba(188, 1, 0, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .nav-dot.active {
+            background: #bc0100;
+            box-shadow: 0 0 10px rgba(188, 1, 0, 0.8);
+        }
+        
+        .nav-dot::after {
+            content: attr(data-label);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: rgba(229, 229, 229, 0.5);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .nav-dot:hover::after, .nav-dot.active::after {
+            opacity: 1;
+            color: #e5e5e5;
+        }
+        
+        .nav-line {
+            position: absolute;
+            left: 3px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(188, 1, 0, 0.2);
+            z-index: -1;
+        }
+        
+        .nav-progress {
+            position: absolute;
+            left: 3px;
+            top: 0;
+            width: 1px;
+            background: #bc0100;
+            z-index: -1;
+            transition: height 0.3s;
+        }
+    </style>
+</head>
+<body class="bg-[#0a0a0a] text-[#e5e5e5] antialiased overflow-x-hidden selection:bg-primary selection:text-white pl-0 md:pl-24">
+<div class="blueprint-bg"></div>
+<div class="blueprint-grid-fine"></div>
+<!-- Side Nav -->
+<div class="side-nav hidden md:flex">
+<div class="nav-line"></div>
+<div class="nav-progress" id="nav-progress" style="height: 0%;"></div>
+<a class="nav-dot active" data-label="SYS.INIT" href="#hero"></a>
+<a class="nav-dot" data-label="MOD.ANALYZE" href="#analyze"></a>
+<a class="nav-dot" data-label="MOD.DNA_EXTRACT" href="#report"></a>
+<a class="nav-dot" data-label="MOD.INTEL" href="#research"></a>
+<a class="nav-dot" data-label="MOD.SYNTHESIS" href="#strategy"></a>
+<a class="nav-dot" data-label="MOD.COMPILE" href="#script"></a>
+<a class="nav-dot" data-label="SYS.BENCHMARK" href="#compare"></a>
+<a class="nav-dot" data-label="MOD.CTR_OPT" href="#ctr"></a>
+<a class="nav-dot" data-label="SYS.DEPLOY" href="#pricing"></a>
+</div>
+<!-- TopAppBar -->
+<div class="flex justify-center items-center py-2 px-margin-desktop w-full bg-[#111] border-b border-primary/20 relative z-[60]">
+<span class="material-symbols-outlined mr-2 text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<span class="font-mono text-[10px] uppercase tracking-widest text-primary/80">SYS.MSG: Built for creators, agencies and media brands // SECURE CONNECTION</span>
+</div>
+<!-- Main Navigation -->
+<nav class="fixed top-[36px] w-full md:w-[calc(100%-6rem)] z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-primary/30 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 mx-auto right-0">
+<div class="font-display-lg text-[24px] font-bold text-white tracking-tighter flex items-center gap-2">
+<span class="text-primary font-mono opacity-50">&lt;</span>
+    TubeBoost
+    <span class="text-primary font-mono opacity-50">/&gt;</span>
+</div>
+<div class="hidden md:flex gap-gutter items-center font-mono">
+<a class="text-[#a0a0a0] hover:text-primary transition-colors text-[12px] uppercase tracking-wider" href="#analyze">[01] Analyze</a>
+<a class="text-[#a0a0a0] hover:text-primary transition-colors text-[12px] uppercase tracking-wider" href="#strategy">[02] Strategy</a>
+<a class="text-[#a0a0a0] hover:text-primary transition-colors text-[12px] uppercase tracking-wider" href="#pricing">[03] Pricing</a>
+</div>
+<button class="bg-primary/20 text-primary border border-primary font-mono text-[12px] uppercase px-6 py-2 rounded hover:bg-primary hover:text-white transition-all hidden md:block tracking-wider">INIT_TRIAL()</button>
+</nav>
+<!-- 3. Hero Section -->
+<section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-stack-xl mt-24" id="hero">
+<div class="absolute inset-0 -z-10 opacity-30" id="three-container"></div>
+<div class="max-w-5xl mx-auto px-margin-mobile relative z-10 assemble-block">
+<div class="flex flex-col items-start gap-4 mb-8 border-l-2 border-primary pl-4">
+<span class="font-mono text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-1">SYS.VER: Intelligence Engine v4.0</span>
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.1] font-display text-white">
+                Create Better YouTube <br><span class="text-primary font-mono font-normal tracking-tight">&lt;Videos, Faster&gt;</span>
+</h1>
+<p class="text-lg md:text-xl text-[#a0a0a0] max-w-2xl font-mono text-sm leading-relaxed">
+                &gt; The world's first AI-driven video synthesis platform that deconstructs viral logic to architect your next breakout hit. _
+            </p>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-4 mt-12 font-mono">
+<button class="w-full sm:w-auto bg-primary text-white px-8 py-3 text-sm font-bold uppercase tracking-wider hover:bg-primary/80 transition-colors border border-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span> Get Started Free
+                </button>
+<button class="w-full sm:w-auto tech-panel px-8 py-3 text-sm font-bold text-white uppercase tracking-wider hover:bg-[#111] transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">terminal</span> View Demo
+                </button>
+</div>
+</div>
+</section>
+<!-- 4. Viral DNA Engine Section -->
+<section class="py-32 border-y border-primary/20 relative" id="analyze">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-primary/50 to-transparent"></div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-left mb-20 border-l-2 border-primary pl-6 assemble-block">
+<h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 font-display text-white">Most AI Generates Content. <br><span class="text-primary font-mono text-3xl">&gt; We Generate Strategy.</span></h2>
+<p class="text-[#a0a0a0] max-w-2xl font-mono text-sm">Our 5-step Viral DNA Engine reverses the success of your top competitors to build a custom roadmap for your channel.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-0 border border-primary/20 tech-panel assemble-block">
+<!-- Step 1 -->
+<div class="relative z-10 p-6 text-center group hover:bg-primary/5 transition-all border-b md:border-b-0 md:border-r border-primary/20">
+<div class="font-mono text-[10px] text-primary/50 mb-4 text-left">SEQ.01</div>
+<div class="w-10 h-10 border border-primary/50 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-[20px]">search</span>
+</div>
+<h3 class="font-mono font-bold mb-2 text-sm uppercase text-white tracking-wider">Ingest</h3>
+<p class="text-[10px] text-[#888] font-mono">Paste any competitor URL to begin analysis.</p>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 p-6 text-center group hover:bg-primary/5 transition-all border-b md:border-b-0 md:border-r border-primary/20">
+<div class="font-mono text-[10px] text-primary/50 mb-4 text-left">SEQ.02</div>
+<div class="w-10 h-10 border border-primary/50 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-[20px]">dna</span>
+</div>
+<h3 class="font-mono font-bold mb-2 text-sm uppercase text-white tracking-wider">Deconstruct</h3>
+<p class="text-[10px] text-[#888] font-mono">Extract pacing, hooks, and retention loops.</p>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 p-6 text-center group hover:bg-primary/5 transition-all border-b md:border-b-0 md:border-r border-primary/20">
+<div class="font-mono text-[10px] text-primary/50 mb-4 text-left">SEQ.03</div>
+<div class="w-10 h-10 border border-primary/50 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-[20px]">psychology</span>
+</div>
+<h3 class="font-mono font-bold mb-2 text-sm uppercase text-white tracking-wider">Research</h3>
+<p class="text-[10px] text-[#888] font-mono">Auto-fetch deep data and stats for authority.</p>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10 p-6 text-center group hover:bg-primary/5 transition-all border-b md:border-b-0 md:border-r border-primary/20">
+<div class="font-mono text-[10px] text-primary/50 mb-4 text-left">SEQ.04</div>
+<div class="w-10 h-10 border border-primary/50 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-[20px]">architecture</span>
+</div>
+<h3 class="font-mono font-bold mb-2 text-sm uppercase text-white tracking-wider">Blueprint</h3>
+<p class="text-[10px] text-[#888] font-mono">Synthesize into a high-retention structure.</p>
+</div>
+<!-- Step 5 -->
+<div class="relative z-10 p-6 text-center bg-primary/10 border-t-2 border-primary group hover:bg-primary/20 transition-all">
+<div class="font-mono text-[10px] text-primary mb-4 text-left">SEQ.05</div>
+<div class="w-10 h-10 bg-primary flex items-center justify-center mx-auto mb-4 shadow-[0_0_15px_rgba(188,1,0,0.5)]">
+<span class="material-symbols-outlined text-white text-[20px]">rocket_launch</span>
+</div>
+<h3 class="font-mono font-bold mb-2 text-sm uppercase text-white tracking-wider">Execute</h3>
+<p class="text-[10px] text-[#aaa] font-mono">Ready-to-write script with optimal pacing.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Viral DNA Report Showcase -->
+<section class="py-32 overflow-hidden relative" id="report">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-8 assemble-block border-l-2 border-primary pl-6">
+<span class="text-primary font-mono uppercase tracking-[0.2em] text-[10px] border border-primary/30 px-2 py-1">SYS.MODULE: Analysis Engine</span>
+<h2 class="text-4xl md:text-5xl font-extrabold tracking-tight font-display text-white">See What Makes A Video <br><span class="text-primary font-mono text-3xl">&gt; Impossible To Ignore.</span></h2>
+<p class="text-sm font-mono text-[#a0a0a0] leading-relaxed">
+                        We don't just transcribe videos. We analyze the emotional cadence and retention physics that drive the YouTube algorithm. Understand exactly when viewers drop off and why.
+                    </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 tech-panel">
+<div class="text-2xl font-mono text-white mb-1">98<span class="text-primary">%</span></div>
+<div class="text-[10px] font-mono uppercase text-[#888] tracking-widest">Pacing Accuracy</div>
+</div>
+<div class="p-4 tech-panel">
+<div class="text-2xl font-mono text-white mb-1">3.2<span class="text-primary">s</span></div>
+<div class="text-[10px] font-mono uppercase text-[#888] tracking-widest">Avg. Hook Gap</div>
+</div>
+</div>
+</div>
+<div class="relative assemble-block">
+<div class="tech-panel p-2 z-10 overflow-hidden">
+<div class="flex items-center justify-between mb-4 px-4 pt-4 border-b border-primary/20 pb-4">
+<h3 class="font-mono text-sm uppercase tracking-widest text-white">Emotional Retention Curve</h3>
+<span class="text-[10px] font-mono text-primary px-2 py-1 border border-primary/50 flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span> Live Data
+</span>
+</div>
+<div class="tech-frame aspect-video">
+<div class="scanner-line"></div>
+<img alt="Viral DNA Analysis" class="w-full h-full object-cover opacity-80 mix-blend-screen" src="https://lh3.googleusercontent.com/aida/AP1WRLuvLDaGXsxA52oxpco5L8a2SkGhxJChjeMUqH7nwsNJPt9xRk3ddKtg7kHbEmMYKlBXg6GuQtM5EYFKcpjJtR9mYsIieo-CrtJdXbTRwm_wXwuHRjO03U6OwWkwzarCgmVW7jDrAJTiEgdOb-IGvoT3k-jEN3b3aOCtqx-GJAv-9a2EKrqMrhtzcUxF5oZC_uKY-A6GfbIGKdVKDtp-Oyga8r9RHJa-RGpbyUYXEAOJm8seHpuZerdnEU7M">
+<!-- Overlay UI -->
+<div class="absolute inset-0 pointer-events-none">
+<div class="absolute top-4 left-4 font-mono text-[8px] text-primary">X_AXIS: TIME<br>Y_AXIS: RETENTION</div>
+<div class="absolute bottom-4 right-4 font-mono text-[8px] text-primary">VAR: CURIOSITY_GAP = TRUE</div>
+<!-- Target Reticle -->
+<div class="absolute top-1/2 left-1/3 w-8 h-8 border border-primary/50 -translate-x-1/2 -translate-y-1/2">
+<div class="absolute top-0 left-1/2 w-px h-full bg-primary/30"></div>
+<div class="absolute top-1/2 left-0 w-full h-px bg-primary/30"></div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#111] border border-primary/50 text-primary font-mono text-[8px] px-1 whitespace-nowrap">PATTERN_INTERRUPT_01</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-4 mt-4 px-4 pb-2 text-[8px] font-mono text-[#888] uppercase tracking-widest text-center border-t border-primary/20 pt-4">
+<span>Hook</span>
+<span>The Turn</span>
+<span>Escalation</span>
+<span>Payoff</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Research Intelligence Section -->
+<section class="py-32 relative border-y border-primary/20 bg-[rgba(188,1,0,0.02)]" id="research">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-left mb-20 border-l-2 border-primary pl-6 assemble-block">
+<h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 font-display text-white">Before Writing, <br><span class="text-primary font-mono text-3xl">&gt; The AI Becomes An Expert.</span></h2>
+<p class="text-[#a0a0a0] max-w-2xl font-mono text-sm">Stop surface-level research. TubeBoost crawls 100+ sources in seconds to find the "Hidden Nuggets" your viewers haven't seen before.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Column 1: Sources -->
+<div class="space-y-4">
+<div class="tech-panel p-6 assemble-block" style="transition-delay: 0.1s;">
+<div class="flex items-center gap-3 mb-4 border-b border-primary/20 pb-2">
+<span class="font-mono text-[10px] text-primary">SRC.01</span>
+<span class="text-xs font-mono uppercase tracking-wider text-white">Academic Journals</span>
+</div>
+<div class="font-mono text-[10px] text-[#666] break-all leading-tight">
+    &gt; QUERYING DATABASE...<br>
+    &gt; PARSING_TEXT(1024_PAGES)<br>
+    &gt; EXTRACTING_METRICS()
+</div>
+</div>
+<div class="tech-panel p-6 assemble-block" style="transition-delay: 0.2s;">
+<div class="flex items-center gap-3 mb-4 border-b border-primary/20 pb-2">
+<span class="font-mono text-[10px] text-primary">SRC.02</span>
+<span class="text-xs font-mono uppercase tracking-wider text-white">Community Sentiment</span>
+</div>
+<div class="font-mono text-[10px] text-[#666] break-all leading-tight">
+    &gt; SCRAPING_FORUMS()<br>
+    &gt; ANALYZING_TONE(NLTK)<br>
+    &gt; IDENTIFYING_PAIN_POINTS()
+</div>
+</div>
+</div>
+<!-- Column 2: Central Hub -->
+<div class="flex flex-col items-center justify-center relative assemble-block h-64 md:h-auto">
+<div class="tech-frame w-full h-full min-h-[250px] flex items-center justify-center">
+<img alt="Data Engine" class="w-full h-full object-cover opacity-60 mix-blend-screen absolute inset-0" src="https://lh3.googleusercontent.com/aida/AP1WRLtKbSWyH4y1Di7dYt00k6RGYX1fERk0_Pv1ZIci9BJ9A9NbHJAaeeh-M5kkuO1pO5cnLGqnHOn3LcDndDN68f_EynJ4slKdw7-uUlLYEtEemhEfnXmXS9g4MvJRMgk7m7Ime-fLsCH2eP7SSSWnDn7Rh994FGYvVClX1EurK8ZNh7Yz3xlIS4kRWvkZ1GN8YenqkK4pJqGX5aD1rcofhz-fhhtYP1kAsVjg-r7r5Y7fQbCeLaI2cHy8ae5O">
+<div class="scanner-line"></div>
+<div class="absolute inset-0 border-[4px] border-primary/20 m-4 pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0a0a0a]/80 border border-primary px-4 py-2 font-mono text-xs text-primary z-10 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] animate-spin">data_usage</span> PROCESSING_NODE
+    </div>
+</div>
+<!-- Connection lines -->
+<div class="hidden md:block absolute top-1/2 -left-8 w-16 h-px bg-primary/50"></div>
+<div class="hidden md:block absolute top-1/2 -right-8 w-16 h-px bg-primary/50"></div>
+</div>
+<!-- Column 3: Output -->
+<div class="space-y-4">
+<div class="tech-panel p-6 h-full assemble-block" style="transition-delay: 0.3s;">
+<div class="flex items-center gap-3 mb-6 border-b border-primary/20 pb-2">
+<span class="material-symbols-outlined text-primary text-[16px]">auto_awesome</span>
+<span class="text-xs font-mono font-bold uppercase tracking-widest text-white">Extracted Intelligence</span>
+</div>
+<ul class="space-y-4 font-mono">
+<li class="flex items-start gap-3 text-xs text-[#a0a0a0]">
+<span class="text-primary mt-0.5">&gt;</span>
+    Historical data point #12-B
+</li>
+<li class="flex items-start gap-3 text-xs text-[#a0a0a0]">
+<span class="text-primary mt-0.5">&gt;</span>
+    Counter-intuitive statistic
+</li>
+<li class="flex items-start gap-3 text-xs text-[#a0a0a0]">
+<span class="text-primary mt-0.5">&gt;</span>
+    Audience core tension mapped
+</li>
+</ul>
+<div class="mt-8 pt-4 border-t border-primary/20">
+<div class="h-1 w-full bg-[#222]">
+<div class="h-full bg-primary w-full animate-[pulse_2s_ease-in-out_infinite]"></div>
+</div>
+<div class="text-[8px] text-right text-primary mt-1">COMPLETED (100%)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. Blueprint Generator Section -->
+<section class="py-32 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop" id="strategy">
+<div class="text-left mb-20 border-l-2 border-primary pl-6 assemble-block">
+<span class="font-mono text-[10px] uppercase tracking-widest text-primary border border-primary/30 px-2 py-1 mb-4 inline-block">
+                SYS.MODULE: Synthesis Engine
+            </span>
+<h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 font-display text-white">Where Strategy Becomes Structure.</h2>
+<p class="text-[#a0a0a0] max-w-2xl font-mono text-sm">Automatically architect your script's ideal progression by fusing structural DNA from viral competitors with deep topic research.</p>
+</div>
+<!-- Output Blueprint Interface -->
+<div class="tech-panel p-1 md:p-2 assemble-block relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-primary/80"></div>
+<div class="bg-[#0f0f0f] p-6 md:p-10 border border-primary/10 h-full">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 border-b border-primary/20 pb-8">
+<div>
+<h3 class="text-2xl font-mono uppercase tracking-wider text-white mb-2">&gt; Generated_Structure.cfg</h3>
+<p class="text-[#888] font-mono text-xs">Optimized for maximum retention based on competitor analysis.</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 border border-primary text-primary hover:bg-primary/10 font-mono text-[10px] uppercase tracking-widest transition-colors">
+<span class="material-symbols-outlined text-[14px]">download</span>
+                    Export to Script Editor
+                </button>
+</div>
+<div class="space-y-4 font-mono">
+<!-- Hook Block -->
+<div class="border border-primary/30 p-4 flex gap-6 items-start relative group hover:border-primary transition-all bg-[#111]">
+<div class="w-12 h-12 border border-primary/50 flex items-center justify-center shrink-0 bg-primary/5">
+<span class="text-primary text-sm">00</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-4 mb-2 border-b border-[#333] pb-2">
+<h4 class="font-bold uppercase tracking-wider text-sm text-white">The Hook</h4>
+<span class="px-2 py-0.5 bg-primary/20 text-[10px] text-primary border border-primary/30">TIME: 0:00 - 0:15</span>
+</div>
+<p class="text-[#a0a0a0] text-xs leading-relaxed">Establish the counter-narrative immediately. "Everything you know about X is wrong." Present Statistic #3 to validate the claim and create an immediate curiosity gap.</p>
+</div>
+</div>
+<!-- Act 1 Block -->
+<div class="border border-[#333] p-4 flex gap-6 items-start relative group hover:border-primary/50 transition-all bg-[#111]">
+<div class="w-12 h-12 border border-[#444] flex items-center justify-center shrink-0">
+<span class="text-[#888] text-sm">01</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-4 mb-2 border-b border-[#333] pb-2">
+<h4 class="font-bold uppercase tracking-wider text-sm text-[#ddd]">The Setup</h4>
+<span class="px-2 py-0.5 border border-[#444] text-[10px] text-[#888]">TIME: 0:15 - 1:30</span>
+</div>
+<p class="text-[#888] text-xs leading-relaxed">Introduce historical context. Explain how the common misconception started. Open Loop #1: "But there was one crucial detail everyone missed."</p>
+</div>
+</div>
+<!-- Skeleton Loader -->
+<div class="border border-[#222] p-4 flex gap-6 items-start relative bg-[#0a0a0a]">
+<div class="w-12 h-12 border border-[#333] flex items-center justify-center shrink-0">
+<span class="text-[#555] text-sm animate-pulse">02</span>
+</div>
+<div class="flex-1 space-y-3 pt-2">
+<div class="h-2 bg-[#222] w-1/4"></div>
+<div class="h-1.5 bg-[#222] w-full"></div>
+<div class="h-1.5 bg-[#222] w-2/3"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. Footer/Script Agent -->
+<section class="py-32 relative overflow-hidden border-y border-primary/20 bg-[rgba(188,1,0,0.02)]" id="script">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-left mb-20 border-l-2 border-primary pl-6 assemble-block">
+<span class="font-mono text-[10px] uppercase tracking-widest text-primary border border-primary/30 px-2 py-1 mb-4 inline-block">
+    SYS.MODULE: Script Writer Agent
+</span>
+<h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 font-display text-white">From Blueprint To <br><span class="text-primary font-mono text-3xl">&gt; Production-Ready Script</span></h2>
+<p class="text-[#a0a0a0] max-w-2xl font-mono text-sm">Using storytelling DNA, research intelligence, and blueprint structure, the AI generates a complete YouTube script optimized for retention and engagement.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start assemble-block">
+<!-- Left Column: Blueprint Interface -->
+<div class="lg:col-span-4 tech-panel p-6">
+<div class="flex items-center justify-between mb-6 border-b border-primary/20 pb-4">
+<h3 class="font-mono text-xs uppercase tracking-widest text-white">&gt; Video_Blueprint.log</h3>
+<span class="font-mono text-[10px] text-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span> COMPLETE
+</span>
+</div>
+<div class="space-y-2 font-mono text-xs">
+<div class="p-2 border border-[#333] flex items-center justify-between bg-[#111]">
+<span class="text-[#a0a0a0]">00. Hook</span>
+<span class="text-primary">[OK]</span>
+</div>
+<div class="p-2 border border-[#333] flex items-center justify-between bg-[#111]">
+<span class="text-[#a0a0a0]">01. Section 1</span>
+<span class="text-primary">[OK]</span>
+</div>
+<div class="p-2 border border-[#333] flex items-center justify-between bg-[#111]">
+<span class="text-[#a0a0a0]">02. Section 2</span>
+<span class="text-primary">[OK]</span>
+</div>
+<div class="p-2 border border-[#333] flex items-center justify-between bg-[#111]">
+<span class="text-[#a0a0a0]">03. Section 3</span>
+<span class="text-primary">[OK]</span>
+</div>
+<div class="p-2 border border-[#333] flex items-center justify-between bg-[#111]">
+<span class="text-[#a0a0a0]">04. Reveal</span>
+<span class="text-primary">[OK]</span>
+</div>
+<div class="p-2 border border-[#333] flex items-center justify-between bg-[#111]">
+<span class="text-[#a0a0a0]">05. Conclusion</span>
+<span class="text-primary">[OK]</span>
+</div>
+</div>
+</div>
+<!-- Center Column: AI Agent Core -->
+<div class="lg:col-span-3 flex flex-col items-center justify-center py-12 relative">
+<div class="hidden lg:block absolute top-1/2 -left-8 w-16 h-px bg-primary/30"></div>
+<div class="hidden lg:block absolute top-1/2 -right-8 w-16 h-px bg-primary/30"></div>
+<div class="w-32 h-32 border border-primary/50 rounded-full flex items-center justify-center relative">
+<div class="absolute inset-0 rounded-full border border-primary border-dashed animate-[spin_10s_linear_infinite]"></div>
+<div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(188,1,0,0.4)] border border-primary pulse-ring">
+<span class="material-symbols-outlined text-primary text-[32px]">smart_toy</span>
+</div>
+</div>
+<div class="mt-6 text-center font-mono">
+<div class="text-[10px] text-primary mb-1 animate-pulse">&gt; COMPILING_NARRATIVE...</div>
+<div class="text-[8px] text-[#666]">Building Structure</div>
+</div>
+</div>
+<!-- Right Column: Generated Script -->
+<div class="lg:col-span-5 relative">
+<div class="tech-panel p-6 min-h-[350px] relative">
+<div class="flex items-center gap-2 mb-6 border-b border-primary/20 pb-4">
+<span class="material-symbols-outlined text-primary text-[16px]">description</span>
+<span class="font-mono text-xs uppercase tracking-widest text-white">&gt; Final_Script.docx</span>
+</div>
+<div class="space-y-4 font-mono">
+<p class="text-xs font-bold text-primary">[SCENE: INT. STUDIO - DAY]</p>
+<p class="text-[11px] leading-relaxed text-[#a0a0a0] italic">&gt; Nobody expected this company to dominate the market...</p>
+<p class="text-[11px] leading-relaxed text-[#e5e5e5]">For decades, the industry operated under a single assumption that everyone took for granted. But then, everything changed.</p>
+<div class="h-1 bg-[#222] w-full mt-4"></div>
+<div class="h-1 bg-[#222] w-5/6"></div>
+<div class="h-1 bg-[#222] w-4/6"></div>
+</div>
+<!-- Floating Metrics -->
+<div class="absolute -right-4 top-1/4 border border-primary/50 bg-[#0a0a0a] p-2 shadow-lg z-10">
+<div class="font-mono text-[10px] text-primary">WRD_CNT: 3,642</div>
+</div>
+<div class="absolute -left-4 bottom-1/3 border border-primary/50 bg-[#0a0a0a] p-2 shadow-lg z-10">
+<div class="font-mono text-[10px] text-primary">TGT_RET: 72%</div>
+</div>
+<div class="absolute right-4 bottom-10 border border-primary/50 bg-[#0a0a0a] p-2 shadow-lg z-10">
+<div class="font-mono text-[10px] text-primary">OPN_LPS: 14</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="py-32" id="pricing">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-20 assemble-block">
+<span class="font-mono text-[10px] uppercase tracking-widest text-primary border border-primary/30 px-2 py-1 mb-4 inline-block">
+    SYS.MODULE: Deployment
+</span>
+<h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 font-display text-white">
+                        Pay Per Project.<br><span class="text-primary font-mono text-3xl">&gt; Not Per Prompt.</span>
+</h2>
+<p class="text-[#a0a0a0] max-w-2xl font-mono text-sm mx-auto">
+                        Every project includes viral DNA analysis, research intelligence, blueprint generation, script creation, title ideas, and thumbnail concepts.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 assemble-block">
+<!-- Free -->
+<div class="tech-panel p-6 flex flex-col hover:bg-[#111] transition-colors">
+<div class="mb-8 border-b border-primary/20 pb-6">
+<h3 class="font-mono text-lg uppercase text-white mb-2">&gt; TIER_FREE</h3>
+<div class="flex items-baseline gap-1 mb-2 font-mono">
+<span class="text-primary text-sm">₹</span>
+<span class="text-3xl font-bold text-white">0</span>
+</div>
+<p class="font-mono text-[10px] text-[#666] uppercase">SYS.INIT_STATE</p>
+</div>
+<ul class="flex-grow space-y-3 mb-8 font-mono text-xs">
+<li class="flex items-start gap-2 text-[#a0a0a0]">
+<span class="text-primary mt-0.5">&gt;</span> <span class="text-white">1</span> Project
+</li>
+<li class="flex items-start gap-2 text-[#a0a0a0]">
+<span class="text-primary mt-0.5">&gt;</span> DNA Report &amp; Blueprint
+</li>
+<li class="flex items-start gap-2 text-[#a0a0a0]">
+<span class="text-primary mt-0.5">&gt;</span> Limited Script Gen
+</li>
+</ul>
+<button class="border border-[#444] text-[#888] w-full py-2 font-mono text-xs uppercase hover:border-primary hover:text-primary transition-all">Execute()</button>
+</div>
+<!-- Creator -->
+<div class="tech-panel p-6 flex flex-col relative border-primary bg-primary/5">
+<div class="absolute top-0 right-0 bg-primary text-white font-mono text-[8px] px-2 py-1 uppercase">Recommended</div>
+<div class="mb-8 border-b border-primary/30 pb-6">
+<h3 class="font-mono text-lg uppercase text-white mb-2">&gt; TIER_CREATOR</h3>
+<div class="flex items-baseline gap-1 mb-2 font-mono">
+<span class="text-primary text-sm">₹</span>
+<span class="text-3xl font-bold text-white">1,999</span>
+<span class="text-sm text-[#666]">/mo</span>
+</div>
+<p class="font-mono text-[10px] text-primary uppercase">STANDARD_DEPLOYMENT</p>
+</div>
+<ul class="flex-grow space-y-3 mb-8 font-mono text-xs">
+<li class="flex items-start gap-2 text-[#e5e5e5]">
+<span class="text-primary mt-0.5">&gt;</span> <span class="text-white">18</span> Projects
+</li>
+<li class="flex items-start gap-2 text-[#e5e5e5]">
+<span class="text-primary mt-0.5">&gt;</span> Full DNA &amp; Intelligence
+</li>
+<li class="flex items-start gap-2 text-[#e5e5e5]">
+<span class="text-primary mt-0.5">&gt;</span> Full Script Generation
+</li>
+<li class="flex items-start gap-2 text-[#e5e5e5]">
+<span class="text-primary mt-0.5">&gt;</span> 20 Titles &amp; 5 Thumbs
+</li>
+</ul>
+<button class="bg-primary text-white w-full py-2 font-mono text-xs uppercase hover:bg-primary/80 transition-all border border-primary">Execute()</button>
+</div>
+<!-- Pro -->
+<div class="tech-panel p-6 flex flex-col hover:bg-[#111] transition-colors">
+<div class="mb-8 border-b border-primary/20 pb-6">
+<h3 class="font-mono text-lg uppercase text-white mb-2">&gt; TIER_PRO</h3>
+<div class="flex items-baseline gap-1 mb-2 font-mono">
+<span class="text-primary text-sm">₹</span>
+<span class="text-3xl font-bold text-white">3,999</span>
+<span class="text-sm text-[#666]">/mo</span>
+</div>
+<p class="font-mono text-[10px] text-[#666] uppercase">HIGH_VOLUME_STATE</p>
+</div>
+<ul class="flex-grow space-y-3 mb-8 font-mono text-xs">
+<li class="flex items-start gap-2 text-[#a0a0a0]">
+<span class="text-primary mt-0.5">&gt;</span> <span class="text-white">44</span> Projects
+</li>
+<li class="flex items-start gap-2 text-[#a0a0a0]">
+<span class="text-primary mt-0.5">&gt;</span> Everything in Creator
+</li>
+<li class="flex items-start gap-2 text-[#a0a0a0]">
+<span class="text-primary mt-0.5">&gt;</span> Priority Processing
+</li>
+</ul>
+<button class="border border-[#444] text-[#888] w-full py-2 font-mono text-xs uppercase hover:border-primary hover:text-primary transition-all">Execute()</button>
+</div>
+<!-- Agency -->
+<div class="tech-panel p-6 flex flex-col hover:bg-[#111] transition-colors">
+<div class="mb-8 border-b border-primary/20 pb-6">
+<h3 class="font-mono text-lg uppercase text-white mb-2">&gt; TIER_AGENCY</h3>
+<div class="flex items-baseline gap-1 mb-2 font-mono">
+<span class="text-primary text-sm">₹</span>
+<span class="text-3xl font-bold text-white">9,999</span>
+<span class="text-sm text-[#666]">/mo</span>
+</div>
+<p class="font-mono text-[10px] text-[#666] uppercase">ENTERPRISE_CLUSTER</p>
+</div>
+<ul class="flex-grow space-y-3 mb-8 font-mono text-xs">
+<li class="flex items-start gap-2 text-[#a0a0a0]">
+<span class="text-primary mt-0.5">&gt;</span> <span class="text-white">140</span> Projects
+</li>
+<li class="flex items-start gap-2 text-[#a0a0a0]">
+<span class="text-primary mt-0.5">&gt;</span> Team Access
+</li>
+<li class="flex items-start gap-2 text-[#a0a0a0]">
+<span class="text-primary mt-0.5">&gt;</span> API Access (Beta)
+</li>
+</ul>
+<button class="border border-[#444] text-[#888] w-full py-2 font-mono text-xs uppercase hover:border-primary hover:text-primary transition-all">Execute()</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#050505] w-full py-12 border-t border-primary/30 relative overflow-hidden">
+<div class="blueprint-grid-fine opacity-30"></div>
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto relative z-10">
+<div class="font-mono text-sm text-white mb-4 md:mb-0 flex items-center gap-2">
+<span class="text-primary">&lt;</span>TubeBoost<span class="text-primary">/&gt;</span>
+</div>
+<div class="flex flex-wrap gap-6 justify-center font-mono text-[10px] uppercase tracking-wider">
+<a class="text-[#666] hover:text-primary transition-colors" href="#">Terms.txt</a>
+<a class="text-[#666] hover:text-primary transition-colors" href="#">Privacy.txt</a>
+<a class="text-[#666] hover:text-primary transition-colors" href="#">Contact.log</a>
+</div>
+<div class="font-mono text-[10px] text-[#444] mt-4 md:mt-0">© 2024 SYSTEM_COMPILED</div>
+</div>
+</footer>
+<script>
+        // Hero Section Three.js Animation - Keep abstract but adjust colors for theme
+        const initThree = () => {
+            const container = document.getElementById('three-container');
+            if (!container) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(container.offsetWidth, container.offsetHeight);
+            container.appendChild(renderer.domElement);
+
+            // Create a wireframe grid landscape
+            const geometry = new THREE.PlaneGeometry(20, 20, 20, 20);
+            const material = new THREE.MeshBasicMaterial({
+                color: 0xbc0100,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.15,
+            });
+            const grid = new THREE.Mesh(geometry, material);
+            grid.rotation.x = -Math.PI / 2;
+            grid.position.y = -2;
+            scene.add(grid);
+
+            // Add some floating cubes
+            const cubes = [];
+            const cubeGeo = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+            const cubeMat = new THREE.MeshBasicMaterial({ color: 0xbc0100, wireframe: true, transparent: true, opacity: 0.3 });
+            
+            for(let i=0; i<10; i++) {
+                const cube = new THREE.Mesh(cubeGeo, cubeMat);
+                cube.position.set((Math.random() - 0.5) * 10, Math.random() * 5, (Math.random() - 0.5) * 10);
+                scene.add(cube);
+                cubes.push(cube);
+            }
+
+            camera.position.z = 5;
+            camera.position.y = 1;
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+                grid.position.z += 0.01;
+                if(grid.position.z > 1) grid.position.z = 0;
+                
+                cubes.forEach((cube, i) => {
+                    cube.rotation.x += 0.01;
+                    cube.rotation.y += 0.01;
+                    cube.position.y += Math.sin(Date.now() * 0.001 + i) * 0.005;
+                });
+                
+                renderer.render(scene, camera);
+            };
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = container.offsetWidth / container.offsetHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.offsetWidth, container.offsetHeight);
+            });
+        };
+
+        window.onload = initThree;
+
+        // Intersection Observer for assemble animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -100px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.assemble-block, .assemble-line-x, .assemble-line-y').forEach((el) => {
+            observer.observe(el);
+        });
+        
+        // Side Nav Scroll Spy
+        const sections = document.querySelectorAll('section[id]');
+        const navDots = document.querySelectorAll('.nav-dot');
+        const progressBar = document.getElementById('nav-progress');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const scrollY = window.pageYOffset;
+            
+            // Calculate progress bar height based on scroll
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollY / totalHeight) * 100;
+            if(progressBar) progressBar.style.height = `${progress}%`;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navDots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.getAttribute('href').includes(current)) {
+                    dot.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ThreeOrb from "../components/ThreeOrb";
 import { useEffect, useRef, useState } from "react";
 
 function MaterialIcon({ name, fill, className = "" }: { name: string; fill?: boolean; className?: string }) {
@@ -85,6 +86,7 @@ export default function Home() {
       <main>
         {/* Hero Section */}
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-12 mt-8 scroll-reveal">
+          <ThreeOrb />
           <div className="max-w-4xl mx-auto px-5 text-center relative z-10">
             <div className="inline-flex items-center gap-2 bg-[#bc0100]/10 px-4 py-1.5 rounded-full mb-8 border border-[#bc0100]/20">
               <span className="w-2 h-2 rounded-full bg-[#bc0100] animate-pulse" />
